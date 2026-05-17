@@ -1,0 +1,588 @@
+:root {
+    --black: #0a0a0f;
+    --gray-dark: #1a1a24;
+    --gray: #2c2c3a;
+    --white: #f0f0f0;
+    --gold: #d4af37;
+    --gold-glow: rgba(212, 175, 55, 0.4);
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-heading: 'Space Grotesk', monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--black);
+    color: var(--white);
+    font-family: var(--font-sans);
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+
+canvas#starCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+}
+
+section {
+    margin: 8rem 0;
+    scroll-margin-top: 2rem;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.02em;
+}
+
+h1 {
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+h1 .gold {
+    color: var(--gold);
+    text-shadow: 0 0 8px var(--gold-glow);
+}
+
+h2 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 2rem;
+    border-left: 4px solid var(--gold);
+    padding-left: 1rem;
+}
+
+.hero {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.subtitle {
+    font-size: 1.25rem;
+    margin: 1.5rem 0 2rem;
+    opacity: 0.8;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 0.8rem 2rem;
+    font-weight: 600;
+    border-radius: 40px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: var(--gold);
+    color: var(--black);
+    box-shadow: 0 0 15px var(--gold-glow);
+}
+
+.cards, .project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.card, .project-card {
+    background: rgba(26, 26, 36, 0.6);
+    backdrop-filter: blur(8px);
+    border-radius: 24px;
+    padding: 2rem;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.card:hover, .project-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--gold);
+}
+
+.card i, .project-card i {
+    font-size: 2.5rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+}
+
+.quote {
+    font-size: 1.8rem;
+    font-style: italic;
+    border-left: 3px solid var(--gold);
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+    font-weight: 300;
+}
+
+.tech {
+    display: inline-block;
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    color: var(--gold);
+    font-family: monospace;
+}
+
+.subscribe form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.subscribe input {
+    flex: 2;
+    min-width: 200px;
+    padding: 1rem;
+    background: var(--gray-dark);
+    border: 1px solid var(--gray);
+    border-radius: 40px;
+    color: white;
+    font-size: 1rem;
+}
+
+.subscribe button {
+    background: var(--gold);
+    border: none;
+    padding: 0 2rem;
+    border-radius: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.subscribe button:hover {
+    background: #e2c044;
+    transform: scale(0.98);
+}
+
+.message {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+footer {
+    text-align: center;
+    padding: 3rem 0 2rem;
+    border-top: 1px solid var(--gray);
+    margin-top: 4rem;
+}
+
+.social-links a {
+    color: var(--white);
+    font-size: 1.8rem;
+    margin: 0 1rem;
+    transition: color 0.2s;
+}
+
+.social-links a:hover {
+    color: var(--gold);
+}
+
+.lang-switch a {
+    color: var(--white);
+    text-decoration: none;
+    margin: 0 0.25rem;
+}
+
+.lang-switch a.active {
+    color: var(--gold);
+    border-bottom: 1px solid var(--gold);
+}
+
+/* Радиальное меню */
+.radial-toggle {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 56px;
+    height: 56px;
+    background: var(--gold);
+    border: none;
+    border-radius: 50%;
+    font-size: 1.8rem;
+    cursor: pointer;
+    z-index: 200;
+    box-shadow: 0 0 15px rgba(212,175,55,0.5);
+    transition: 0.2s;
+}
+
+.radial-toggle:hover {
+    transform: scale(1.05);
+}
+
+.radial-menu {
+    position: fixed;
+    bottom: 6rem;
+    right: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    z-index: 199;
+    background: rgba(10,10,15,0.9);
+    backdrop-filter: blur(16px);
+    padding: 1rem;
+    border-radius: 40px;
+    border: 1px solid var(--gold);
+    transition: all 0.2s;
+}
+
+.radial-menu.hidden {
+    display: none;
+}
+
+.radial-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 1.2rem;
+    cursor: pointer;
+    border-radius: 40px;
+    transition: background 0.2s;
+}
+
+.radial-item:hover {
+    background: rgba(212,175,55,0.2);
+}
+
+.radial-item i {
+    width: 24px;
+    color: var(--gold);
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+    section {
+        margin: 4rem 0;
+    }
+    .quote {
+        font-size: 1.2rem;
+    }
+    .radial-menu {
+        right: 1rem;
+        bottom: 5rem;
+    }
+}
+
+/* Размытие фона при открытом меню */
+body.menu-open {
+    overflow: hidden;
+}
+
+body.menu-open .container {
+    filter: blur(4px);
+    transition: filter 0.2s ease;
+}
+
+body.menu-open canvas#starCanvas {
+    filter: blur(4px);
+}
+
+/* Радиальное меню (улучшенное) */
+.radial-toggle {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 56px;
+    height: 56px;
+    background: var(--gold);
+    border: none;
+    border-radius: 50%;
+    font-size: 1.8rem;
+    cursor: pointer;
+    z-index: 200;
+    box-shadow: 0 0 15px rgba(212,175,55,0.6);
+    transition: 0.2s;
+}
+
+.radial-menu {
+    position: fixed;
+    bottom: 7rem;
+    right: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    z-index: 210;
+    background: rgba(10, 10, 20, 0.95);
+    backdrop-filter: blur(12px);
+    padding: 1rem 0.5rem;
+    border-radius: 60px;
+    border: 1px solid var(--gold);
+    transition: all 0.2s;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.radial-menu.hidden {
+    display: none;
+}
+
+.radial-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 1.2rem;
+    cursor: pointer;
+    border-radius: 40px;
+    transition: background 0.2s;
+}
+
+.radial-item:hover {
+    background: rgba(212, 175, 55, 0.25);
+}
+
+.radial-item i {
+    width: 24px;
+    color: var(--gold);
+    font-size: 1.2rem;
+}
+/* Центральное кольцо Nexus Ring */
+.ring-veil {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    z-index: 9998;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0s linear 0.2s;
+}
+.ring-veil.active {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.2s;
+}
+.ring-menu {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: rgba(10, 10, 20, 0.85);
+    backdrop-filter: blur(12px);
+    border: 2px solid var(--gold);
+    box-shadow: 0 0 40px rgba(212, 175, 55, 0.3);
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ring-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+}
+.ringItem {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--gold);
+    font-size: 0.7rem;
+    text-align: center;
+    backdrop-filter: blur(4px);
+}
+.ringItem i {
+    font-size: 1.6rem;
+}
+.ringItem:hover {
+    background: var(--gold);
+    color: black;
+    transform: scale(1.05);
+    border-color: white;
+}
+/* Расположение пунктов по кругу */
+.ringItem[data-action="atrium"]    { top: 15%; left: 50%; transform: translateX(-50%); }
+.ringItem[data-action="services"]  { top: 50%; right: 5%; transform: translateY(-50%); }
+.ringItem[data-action="projects"]  { bottom: 15%; left: 50%; transform: translateX(-50%); }
+.ringItem[data-action="subscribe"] { top: 50%; left: 5%; transform: translateY(-50%); }
+.ringItem[data-action="lang"]      { top: 30%; right: 15%; }
+.ringItem[data-action="close"]     { bottom: 30%; left: 15%; }
+
+/* === Радиальное меню (компас) === */
+.radial-toggle {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 56px;
+    height: 56px;
+    background: var(--gold);
+    border: none;
+    border-radius: 50%;
+    font-size: 1.8rem;
+    cursor: pointer;
+    z-index: 200;
+    box-shadow: 0 0 15px rgba(212,175,55,0.6);
+    transition: 0.2s;
+}
+.radial-toggle:hover {
+    transform: scale(1.05);
+}
+.radial-menu {
+    position: fixed;
+    bottom: 6rem;
+    right: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    background: rgba(10,10,20,0.95);
+    backdrop-filter: blur(16px);
+    padding: 1rem;
+    border-radius: 40px;
+    border: 1px solid var(--gold);
+    z-index: 199;
+    transition: all 0.2s;
+}
+.radial-menu.hidden {
+    display: none;
+}
+.radial-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 1.2rem;
+    cursor: pointer;
+    border-radius: 40px;
+}
+.radial-item:hover {
+    background: rgba(212,175,55,0.2);
+}
+.radial-item i {
+    width: 24px;
+    color: var(--gold);
+}
+
+/* === Центральное кольцо (Nexus Ring) === */
+.ring-veil {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    z-index: 9998;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0s linear 0.2s;
+}
+.ring-veil.active {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.2s;
+}
+.ring-menu {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: rgba(10, 10, 20, 0.9);
+    backdrop-filter: blur(12px);
+    border: 2px solid var(--gold);
+    box-shadow: 0 0 40px rgba(212, 175, 55, 0.3);
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ring-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+}
+.ringItem {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--gold);
+    font-size: 0.7rem;
+    text-align: center;
+    backdrop-filter: blur(4px);
+}
+.ringItem i {
+    font-size: 1.6rem;
+}
+.ringItem:hover {
+    background: var(--gold);
+    color: black;
+    transform: scale(1.05);
+    border-color: white;
+}
+.ringItem[data-action="atrium"]    { top: 15%; left: 50%; transform: translateX(-50%); }
+.ringItem[data-action="services"]  { top: 50%; right: 5%; transform: translateY(-50%); }
+.ringItem[data-action="projects"]  { bottom: 15%; left: 50%; transform: translateX(-50%); }
+.ringItem[data-action="subscribe"] { top: 50%; left: 5%; transform: translateY(-50%); }
+.ringItem[data-action="lang"]      { top: 30%; right: 15%; }
+.ringItem[data-action="close"]     { bottom: 30%; left: 15%; }
+
+/* При открытом любом меню фон может быть размыт (опционально) */
+body.ring-open .container,
+body.menu-open .container {
+    filter: blur(4px);
+    transition: filter 0.2s;
+}
+body.ring-open canvas#starCanvas,
+body.menu-open canvas#starCanvas {
+    filter: blur(4px);
+}
