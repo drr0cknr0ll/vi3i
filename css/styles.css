@@ -1,10 +1,15 @@
 :root {
-    --black: #0a0a0f;
-    --gray-dark: #1a1a24;
-    --gray: #2c2c3a;
-    --white: #f0f0f0;
-    --gold: #d4af37;
-    --gold-glow: rgba(212, 175, 55, 0.4);
+    --black: #05070d;
+    --gray-dark: #111722;
+    --gray: #24303d;
+    --white: #f2f6f8;
+
+    --gold: #00c3a0;                  /* основной акцент */
+    --gold-soft: rgba(0, 195, 160, 0.16);
+    --gold-glow: rgba(0, 195, 160, 0.42);
+    --blue-glow: rgba(44, 132, 255, 0.18);
+    --panel: rgba(12, 18, 28, 0.72);
+
     --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
     --font-heading: 'Space Grotesk', monospace;
 }
@@ -388,20 +393,17 @@ body.menu-open canvas#starCanvas {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0.9);
-    width: 280px;
-    height: 280px;
+    width: 320px;
+    height: 320px;
     border-radius: 50%;
-    background: rgba(10, 10, 20, 0.85);
+    background: radial-gradient(circle, rgba(0,195,160,0.1), rgba(5,7,13,0.96));
     backdrop-filter: blur(12px);
     border: 2px solid var(--gold);
-    box-shadow: 0 0 40px rgba(212, 175, 55, 0.3);
-    z-index: 9999;
+    box-shadow: 0 0 50px var(--gold-glow);
+    z-index: 10000;
     opacity: 0;
     visibility: hidden;
-    transition: 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    transition: all 0.2s;
 }
 .ring-menu.active {
     opacity: 1;
@@ -412,37 +414,27 @@ body.menu-open canvas#starCanvas {
     position: absolute;
     width: 70px;
     height: 70px;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(5,7,13,0.9);
     border: 1px solid var(--gold);
     border-radius: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 5px;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: 0.2s;
     color: var(--gold);
-    font-size: 0.7rem;
-    text-align: center;
-    backdrop-filter: blur(4px);
+    font-size: 0.75rem;
 }
-.ringItem i {
-    font-size: 1.6rem;
-}
-.ringItem:hover {
-    background: var(--gold);
-    color: black;
-    transform: scale(1.05);
-    border-color: white;
-}
-/* Расположение пунктов по кругу */
-.ringItem[data-action="atrium"]    { top: 15%; left: 50%; transform: translateX(-50%); }
-.ringItem[data-action="services"]  { top: 50%; right: 5%; transform: translateY(-50%); }
-.ringItem[data-action="projects"]  { bottom: 15%; left: 50%; transform: translateX(-50%); }
-.ringItem[data-action="subscribe"] { top: 50%; left: 5%; transform: translateY(-50%); }
-.ringItem[data-action="lang"]      { top: 30%; right: 15%; }
-.ringItem[data-action="close"]     { bottom: 30%; left: 15%; }
+.ringItem i { font-size: 1.6rem; margin-bottom: 4px; }
+.ringItem:hover { background: var(--gold); color: var(--black); transform: scale(1.05); }
+/* Расположение пунктов */
+.ringItem[data-action="atrium"]    { top: 8%; left: 50%; transform: translateX(-50%); }
+.ringItem[data-action="services"]  { top: 50%; right: 8%; transform: translateY(-50%); }
+.ringItem[data-action="projects"]  { bottom: 8%; left: 50%; transform: translateX(-50%); }
+.ringItem[data-action="subscribe"] { top: 50%; left: 8%; transform: translateY(-50%); }
+.ringItem[data-action="lang"]      { top: 25%; right: 12%; }
+.ringItem[data-action="close"]     { bottom: 25%; left: 12%; }
 
 /* === Радиальное меню (компас) === */
 .radial-toggle {
