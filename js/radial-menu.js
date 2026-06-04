@@ -1,4 +1,3 @@
-// public/js/radial-menu.js
 (function() {
     const toggleBtn = document.getElementById('radialToggle');
     const menu = document.getElementById('radialMenu');
@@ -15,7 +14,7 @@
     
     toggleBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-        closeRingIfOpen(); // закрываем центральное кольцо, если открыто
+        closeRingIfOpen();
         const isHidden = menu.classList.contains('hidden');
         if (isHidden) {
             menu.classList.remove('hidden');
@@ -45,6 +44,13 @@
             const lang = item.getAttribute('data-lang');
             if (lang === 'en') window.location.href = '/en/';
             if (lang === 'ru') window.location.href = '/';
+            const href = item.getAttribute('data-href');
+            if (href) {
+                window.location.href = href;
+                menu.classList.add('hidden');
+                body.classList.remove('menu-open');
+                return;
+            }
             menu.classList.add('hidden');
             body.classList.remove('menu-open');
         });

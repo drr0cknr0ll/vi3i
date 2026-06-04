@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Инструменты и автоматизации — Vizion Labs</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Дополнительные стили для каталога (можно позже перенести в styles.css) */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .product-card {
+            background: rgba(26, 26, 36, 0.6);
+            backdrop-filter: blur(8px);
+            border-radius: 24px;
+            padding: 1.5rem;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold, #d4af37);
+        }
+        .badge {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.2);
+            color: var(--gold, #d4af37);
+            border-radius: 20px;
+            padding: 0.2rem 0.8rem;
+            font-size: 0.7rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+            justify-content: center;
+        }
+        .filter-btn {
+            background: transparent;
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #f0f0f0;
+        }
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--gold, #d4af37);
+            color: #0a0a0f;
+            border-color: var(--gold);
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(8px);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background: #1a1a24;
+            border-radius: 24px;
+            max-width: 600px;
+            width: 90%;
+            padding: 2rem;
+            border: 1px solid var(--gold);
+            position: relative;
+        }
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--gold);
+        }
+        .partner-section {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(212,175,55,0.3);
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="starCanvas"></canvas>
+
+<div class="container">
+    <nav class="top-nav" style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 0;">
+        <a href="/" class="logo" style="font-size: 1.5rem; font-weight: bold;">VIZION<span style="color: var(--gold);">LABS</span></a>
+        <div>
+            <a href="/" style="margin-right: 1rem;">Главная</a>
+            <a href="/labs.html" style="color: var(--gold);">Инструменты</a>
+        </div>
+    </nav>
+
+    <header class="hero" style="text-align: center; margin: 3rem 0;">
+        <h1>Лаборатория автоматизации</h1>
+        <p class="subtitle">Утилиты, боты и движки — всё, что мы создаём для контроля над цифровым хаосом</p>
+    </header>
+
+    <div class="filter-bar" id="filterBar">
+        <button class="filter-btn active" data-cat="all">Все</button>
+        <button class="filter-btn" data-cat="Браузерные расширения">Расширения</button>
+        <button class="filter-btn" data-cat="n8n-автоматизации">n8n</button>
+        <button class="filter-btn" data-cat="AI-инструменты">AI</button>
+        <button class="filter-btn" data-cat="Игры и симуляторы">Игры</button>
+        <button class="filter-btn" data-cat="Бизнес-инструменты">Бизнес</button>
+        <button class="filter-btn" data-cat="Скрипты">Скрипты</button>
+    </div>
+
+    <div id="productsContainer" class="product-grid">
+        <!-- сюда будут загружены карточки -->
+        <div class="loading">Загрузка инструментов...</div>
+    </div>
+
+    <!-- Блок партнёров -->
+    <div class="partner-section">
+        <h2 style="text-align: center;">Экосистема Vizion Labs</h2>
+        <div id="partnersContainer" class="product-grid" style="grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));">
+            <!-- партнёры будут загружены -->
+        </div>
+    </div>
+
+    <!-- Блок сообщества -->
+    <div style="margin: 3rem 0; text-align: center;">
+        <h2>В кругу своих</h2>
+        <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 1rem;">
+            <iframe src="https://t.me/s/vi3ionlab?embed=1&single=1&preview=1" style="width: 100%; max-width: 500px; height: 300px; border: none; border-radius: 16px;"></iframe>
+            <div style="background: rgba(26,26,36,0.6); padding: 1.5rem; border-radius: 24px; text-align: left;">
+                <p><i class="fab fa-telegram"></i> <a href="https://t.me/vi3ionlab" target="_blank">@vi3ionlab</a> — новости и обсуждения</p>
+                <p><i class="fab fa-vk"></i> <a href="https://vk.com/vi3ion" target="_blank">VK</a></p>
+                <p><i class="fab fa-facebook"></i> <a href="https://facebook.com/vi3ion" target="_blank">Facebook</a></p>
+                <p><i class="fab fa-threads"></i> <a href="https://threads.net/@vi3ion" target="_blank">Threads</a></p>
+            </div>
+        </div>
+    </div>
+
+    <footer style="text-align: center; padding: 2rem 0;">
+        <p>© 2026 Vizion Labs Market — AI-native engineering ecosystem</p>
+    </footer>
+</div>
+
+<!-- Радиальное меню (кнопка-компас) – скопировано с главной -->
+<button id="radialToggle" class="radial-toggle"><i class="fas fa-compass"></i></button>
+<div id="radialMenu" class="radial-menu hidden">
+    <div class="radial-item" data-target="home"><i class="fas fa-home"></i><span>Главная</span></div>
+    <div class="radial-item" data-target="services"><i class="fas fa-cogs"></i><span>Услуги</span></div>
+    <div class="radial-item" data-target="projects"><i class="fas fa-folder-open"></i><span>Проекты</span></div>
+    <div class="radial-item" data-target="subscribe"><i class="fas fa-envelope"></i><span>Подписка</span></div>
+    <div class="radial-item" data-href="/labs.html"><i class="fas fa-tools"></i><span>Инструменты</span></div>
+    <div class="radial-item lang-toggle" data-lang="en"><i class="fas fa-globe"></i><span>English</span></div>
+</div>
+
+<script src="/js/starfield.js"></script>
+<script src="/js/radial-menu.js"></script>
+<script>
+    // Загрузка данных и рендеринг
+    fetch('/data/products.json')
+        .then(res => res.json())
+        .then(data => {
+            const products = data.products;
+            const partners = data.partners;
+            renderProducts(products);
+            renderPartners(partners);
+            setupFilters(products);
+        })
+        .catch(err => {
+            document.getElementById('productsContainer').innerHTML = '<p>Ошибка загрузки данных.</p>';
+            console.error(err);
+        });
+
+    function renderProducts(products) {
+        const container = document.getElementById('productsContainer');
+        if (!products.length) {
+            container.innerHTML = '<p>Нет продуктов для отображения.</p>';
+            return;
+        }
+        container.innerHTML = products.map(p => `
+            <div class="product-card" data-category="${p.category}">
+                <h3>${p.title}</h3>
+                <div style="margin: 0.5rem 0;">
+                    ${p.tags?.map(t => `<span class="badge">${t}</span>`).join('')}
+                </div>
+                <p class="short">${p.short}</p>
+                <div class="price" style="margin: 1rem 0; font-size: 0.9rem; color: var(--gold);">${p.price}</div>
+                <button class="btn-primary" onclick="openProductModal('${p.id}')">Подробнее →</button>
+            </div>
+        `).join('');
+    }
+
+    function renderPartners(partners) {
+        const container = document.getElementById('partnersContainer');
+        if (!partners || !partners.length) return;
+        container.innerHTML = partners.map(p => `
+            <div class="product-card" style="background: rgba(0,0,0,0.4);">
+                <h3>${p.name}</h3>
+                <p>${p.description}</p>
+                <a href="${p.url}" target="_blank" class="btn-primary" style="display: inline-block; margin-top: 1rem;">Перейти →</a>
+                ${p.telegram ? `<p style="margin-top: 0.5rem;"><i class="fab fa-telegram"></i> <a href="${p.telegram}" target="_blank">Telegram</a></p>` : ''}
+            </div>
+        `).join('');
+    }
+
+    function setupFilters(products) {
+        const btns = document.querySelectorAll('.filter-btn');
+        btns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                btns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const cat = btn.getAttribute('data-cat');
+                const cards = document.querySelectorAll('.product-card');
+                cards.forEach(card => {
+                    if (cat === 'all' || card.getAttribute('data-category') === cat) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    }
+
+    // Модальное окно (данные из того же JSON)
+    let productsData = null;
+    let loadingPromise = fetch('/data/products.json')
+        .then(res => res.json())
+        .then(data => {
+            productsData = data;
+            renderProducts(data.products);
+            renderPartners(data.partners);
+            setupFilters(data.products);
+        })
+        .catch(err => {
+            console.error(err);
+            document.getElementById('productsContainer').innerHTML = '<p>Ошибка загрузки данных.</p>';
+        });
+
+    async function openProductModal(productId) {
+        if (!productsData) {
+            await loadingPromise;
+        }
+        const product = productsData.products.find(p => p.id === productId);
+        if (!product) return;
+
+        let actionHtml = '';
+        if (product.demoUrl) actionHtml = `<a href="${product.demoUrl}" class="btn-primary" target="_blank">Играть в демо</a>`;
+        else if (product.downloadUrl) actionHtml = `<a href="${product.downloadUrl}" class="btn-primary">Скачать демо</a>`;
+        else if (product.paymentUrl) actionHtml = `<a href="${product.paymentUrl}" target="_blank" class="btn-primary">Купить / Поддержать</a>`;
+        else if (product.contactUrl) actionHtml = `<a href="${product.contactUrl}" target="_blank" class="btn-primary">Запросить адаптацию</a>`;
+        else if (product.subscribeUrl) actionHtml = `<a href="${product.subscribeUrl}" class="btn-primary">Подписаться на релиз</a>`;
+
+        const modalHtml = `
+            <div class="modal-content">
+                <span class="close-modal" onclick="closeModal()">&times;</span>
+                <h2>${product.title}</h2>
+                <p>${product.description}</p>
+                <p><strong>Статус:</strong> ${product.status}</p>
+                <p><strong>Цена:</strong> ${product.price}</p>
+                <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                    ${actionHtml}
+                    ${product.telegram ? `<a href="${product.telegram}" target="_blank" class="btn-primary">Обсудить в Telegram</a>` : ''}
+                </div>
+            </div>
+        `;
+        let modal = document.getElementById('productModal');
+        if (!modal) {
+            modal = document.createElement('div');
+            modal.id = 'productModal';
+            modal.className = 'modal';
+            document.body.appendChild(modal);
+        }
+        modal.innerHTML = modalHtml;
+        modal.style.display = 'flex';
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('productModal');
+        if (modal) modal.style.display = 'none';
+    }
+</script>
+</body>
+</html>

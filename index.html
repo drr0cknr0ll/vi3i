@@ -30,6 +30,7 @@
     <div class="radial-item" data-target="services"><i class="fas fa-cogs"></i><span>Услуги</span></div>
     <div class="radial-item" data-target="projects"><i class="fas fa-folder-open"></i><span>Проекты</span></div>
     <div class="radial-item" data-target="subscribe"><i class="fas fa-envelope"></i><span>Подписка</span></div>
+    <div class="radial-item" data-href="/labs.html"><i class="fas fa-tools"></i><span>Инструменты</span></div>
     <div class="radial-item lang-toggle" data-lang="en"><i class="fas fa-globe"></i><span>English</span></div>
 </div>
 
@@ -70,6 +71,17 @@
             <div class="project-card"><h3>MCP Orchestrator</h3><p>Платформа оркестрации AI-агентов</p><span class="tech">Infrastructure</span></div>
         </div>
     </section>
+    <!-- Программки и автоматизации -->
+<section class="products-showcase" id="labs">
+    <h2>Программки и автоматизации</h2>
+    <div class="cards" id="featured-products">
+        <!-- будут загружены из JSON -->
+        <div class="loading">Загрузка...</div>
+    </div>
+    <div style="text-align: center; margin-top: 2rem;">
+        <a href="/labs.html" class="btn-primary">Все инструменты →</a>
+    </div>
+</section>
 
     <!-- Subscribe -->
     <section class="subscribe" id="subscribe">
@@ -97,23 +109,29 @@
     </footer>
 </div>
 
-<!-- Радиальное меню -->
-<button id="radialToggle" class="radial-toggle"><i class="fas fa-compass"></i></button>
-<div id="radialMenu" class="radial-menu hidden">
-    <div class="radial-item" data-target="home"><i class="fas fa-home"></i><span>Главная</span></div>
-    <div class="radial-item" data-target="services"><i class="fas fa-cogs"></i><span>Услуги</span></div>
-    <div class="radial-item" data-target="projects"><i class="fas fa-folder-open"></i><span>Проекты</span></div>
-    <div class="radial-item" data-target="subscribe"><i class="fas fa-envelope"></i><span>Подписка</span></div>
-    <div class="radial-item lang-toggle" data-lang="en"><i class="fas fa-globe"></i><span>English</span></div>
-</div>
-
 <script src="/js/starfield.js"></script>
 <script src="/js/radial-menu.js"></script>
 <script src="/js/main.js"></script>
+<script>
+    fetch('/data/products.json')
+        .then(res => res.json())
+        .then(data => {
+            const featured = data.products.filter(p => p.featured === true).slice(0, 4);
+            const container = document.getElementById('featured-products');
+            if (container) {
+                container.innerHTML = featured.map(p => `
+                    <div class="card">
+                        <i class="fas ${p.id === 'clean-search' ? 'fa-search' : 'fa-cogs'}"></i>
+                        <h3>${p.title}</h3>
+                        <p>${p.short}</p>
+                        <button onclick="window.location.href='/labs.html'" class="btn-primary" style="margin-top: 1rem;">Подробнее</button>
+                    </div>
+                `).join('');
+            }
+        });
+</script>
 </body>
 <!-- Кольцо управления (Nexus Ring) -->
-<div id="ringVeil" class="ring-veil" aria-hidden="true"></div>
-<div id="ringMenu" class="ring-menu" aria-hidden="true">
     <div class="ringItem" data-action="atrium">
         <i class="fas fa-home"></i><span>Главная</span>
     </div>

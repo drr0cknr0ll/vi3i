@@ -1,0 +1,133 @@
+{
+  "products": [
+    {
+      "id": "clean-search",
+      "title": "Clean Search",
+      "category": "Браузерные расширения",
+      "status": "ready",
+      "price": "бесплатно / премиум за Stars",
+      "short": "Фильтр AI-мусора в выдаче Google, Яндекс, Bing",
+      "description": "Расширение для Chrome, Firefox, Edge. Помечает и скрывает AI-спам, улучшает качество поиска.",
+      "downloadUrl": "https://addons.mozilla.org/ru/firefox/addon/clean-search/",
+      "paymentUrl": "https://t.me/aifilter_bot",
+      "telegram": "https://t.me/vi3ionlab",
+      "tags": ["browser-extension", "ai-filter"],
+      "featured": true
+    },
+    {
+      "id": "n8n-backup-helper",
+      "title": "n8n Backup Helper",
+      "category": "n8n-автоматизации",
+      "status": "mvp",
+      "price": "donationware",
+      "short": "Бэкап и восстановление self-hosted n8n",
+      "description": "PowerShell-скрипты для экспорта workflows, проверки окружения, health‑check, подготовки к переносу.",
+      "downloadUrl": "/downloads/n8n-backup-helper-demo.zip",
+      "telegram": "https://t.me/vi3ionlab",
+      "tags": ["n8n", "devops"],
+      "featured": true
+    },
+    {
+      "id": "season-fate",
+      "title": "Season & Fate",
+      "category": "Игры и симуляторы",
+      "status": "demo",
+      "price": "играть бесплатно",
+      "short": "Браузерный симулятор решений (киберспорт, менеджмент)",
+      "description": "Сезонный симулятор с событиями, d20-проверками, карьерой команды. Демо «Garage League».",
+      "demoUrl": "/season-fate.html",
+      "telegram": "https://t.me/vi3ionlab",
+      "tags": ["game"],
+      "featured": true
+    },
+    {
+      "id": "contract-assistant",
+      "title": "Contract Assistant Lite",
+      "category": "Бизнес-инструменты",
+      "status": "prototype",
+      "price": "по запросу",
+      "short": "Мини-ЭДО для подготовки договоров по шаблонам",
+      "description": "Заполнение реквизитов, версии документов, протоколы согласования.",
+      "contactUrl": "https://t.me/vi3ionlab",
+      "telegram": "https://t.me/vi3ionlab",
+      "tags": ["business", "legal"]
+    },
+    {
+      "id": "telegram-digest",
+      "title": "Telegram Digest Factory",
+      "category": "AI-инструменты",
+      "status": "alpha",
+      "price": "по запросу",
+      "short": "Автоматическая подготовка дайджестов из ссылок и заметок",
+      "description": "Структура выпуска, редакторская заметка, пост и промпт для иллюстрации.",
+      "contactUrl": "https://t.me/vi3ionlab",
+      "telegram": "https://t.me/vi3ionlab",
+      "tags": ["telegram", "content"]
+    },
+    {
+      "id": "ai-code-checker",
+      "title": "AI Code Checker",
+      "category": "AI-инструменты",
+      "status": "coming-soon",
+      "price": "бесплатно",
+      "short": "Помощник для проверки кода на ошибки инициализации и уязвимости",
+      "description": "Анализирует JavaScript/TypeScript, находит антипаттерны, небезопасные конструкции.",
+      "subscribeUrl": "/#subscribe",
+      "telegram": "https://t.me/vi3ionlab",
+      "tags": ["developer-tools"]
+    },
+    {
+      "id": "telegram-relay",
+      "title": "Telegram Relay Kit",
+      "category": "Скрипты",
+      "status": "beta",
+      "price": "платный ключ",
+      "short": "Локальный релей с пулом прокси для стабильной работы Telegram API",
+      "description": "Node/Docker-сервис с ротацией прокси, health‑check, интеграция с n8n.",
+      "paymentUrl": "https://t.me/vi3ionlab_bot",
+      "telegram": "https://t.me/vi3ionlab",
+      "tags": ["telegram", "proxy"]
+    },
+    {
+      "id": "sales-core-lite",
+      "title": "Sales Core Lite",
+      "category": "Бизнес-инструменты",
+      "status": "mvp",
+      "price": "по запросу",
+      "short": "Мини-CRM на SQLite и n8n для учёта лидов и сделок",
+      "description": "Учёт писем, контактов, статусов ответов, сделок.",
+      "contactUrl": "https://t.me/vi3ionlab",
+      "telegram": "https://t.me/vi3ionlab",
+      "tags": ["crm", "n8n"]
+    }
+  ],
+  "partners": [
+    {
+      "name": "bc-sco.com",
+      "url": "https://bc-sco.com",
+      "description": "Деловой Центр стран ШОС+",
+      "telegram": "https://t.me/Public_Statement_Lab"
+    },
+    {
+      "name": "baazaar.ru",
+      "url": "https://baazaar.ru",
+      "description": "Маркетплейс креативных индустрий"
+    },
+    {
+      "name": "cov-pro.ru",
+      "url": "https://cov-pro.ru/#contact",
+      "description": "Юридическая компания «Ковенант ПРО»"
+    },
+    {
+      "name": "dc_spot",
+      "url": "https://t.me/dc_spot",
+      "description": "Телеграм-канал DC Spot"
+    },
+    {
+      "name": "artvision2526",
+      "url": "https://2526av.com",
+      "telegram": "https://t.me/artvision2526",
+      "description": "Арт-проект Vision 2526"
+    }
+  ]
+}
