@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services — Vizion Labs</title>
+    <meta name="description" content="Automation, software development, marketing and promotion — comprehensive solutions for your business.">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .service-card {
+            background: rgba(17, 23, 34, 0.7);
+            backdrop-filter: blur(8px);
+            border-radius: 24px;
+            padding: 1.8rem;
+            border: 1px solid rgba(0, 195, 160, 0.2);
+            transition: 0.2s;
+            text-align: center;
+        }
+        .service-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(0, 195, 160, 0.6);
+            box-shadow: 0 12px 40px rgba(0,195,160,0.1);
+        }
+        .service-card i {
+            font-size: 2.8rem;
+            color: var(--gold, #00c3a0);
+            margin-bottom: 1rem;
+        }
+        .service-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+        .service-card p {
+            color: #b0b8c4;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        .service-card .btn {
+            margin-top: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="starCanvas"></canvas>
+
+<div class="container">
+    <nav class="top-nav" style="display:flex;justify-content:space-between;align-items:center;padding:1rem 0;">
+        <a href="/en/" class="logo" style="font-size:1.5rem;font-weight:bold;">VIZION<span style="color:var(--gold);">LABS</span></a>
+        <div>
+            <a href="/en/" style="margin-right:1rem;">Home</a>
+            <a href="/en/services.html" style="color:var(--gold);">Services</a>
+            <a href="/en/cases.html" style="margin-left:1rem;">Cases</a>
+        </div>
+    </nav>
+
+    <header style="text-align:center;margin:3rem 0;">
+        <h1>Business solutions, not just technology</h1>
+        <p class="subtitle">We automate, develop and promote — turnkey.</p>
+    </header>
+
+    <div id="servicesContainer" class="services-grid">
+        <div class="loading">Loading services...</div>
+    </div>
+
+    <!-- Service detail modal -->
+    <div id="serviceModal" class="modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);backdrop-filter:blur(8px);justify-content:center;align-items:center;z-index:1000;">
+        <div class="modal-content" style="background:#111722;border-radius:24px;max-width:600px;width:90%;padding:2rem;border:1px solid var(--gold);position:relative;">
+            <span id="closeModal" style="position:absolute;top:1rem;right:1.5rem;font-size:2rem;cursor:pointer;color:var(--gold);">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <footer style="text-align:center;padding:2rem 0;margin-top:3rem;border-top:1px solid rgba(255,255,255,0.05);">
+        <p>© 2026 Vizion Labs — Covenant Group / Vision Techno Lab</p>
+    </footer>
+</div>
+
+<!-- Radial menu -->
+<button id="radialToggle" class="radial-toggle"><i class="fas fa-compass"></i></button>
+<div id="radialMenu" class="radial-menu hidden">
+    <div class="radial-item" data-href="/en/"><i class="fas fa-home"></i><span>Home</span></div>
+    <div class="radial-item" data-href="/en/services.html"><i class="fas fa-cubes"></i><span>Services</span></div>
+    <div class="radial-item" data-href="/en/cases.html"><i class="fas fa-briefcase"></i><span>Cases</span></div>
+    <div class="radial-item" data-href="/en/labs.html"><i class="fas fa-tools"></i><span>Products</span></div>
+    <div class="radial-item" data-href="/en/#subscribe"><i class="fas fa-envelope"></i><span>Subscribe</span></div>
+    <div class="radial-item lang-toggle" data-lang="ru"><i class="fas fa-globe"></i><span>Русский</span></div>
+</div>
+
+<script src="/js/starfield.js"></script>
+<script src="/js/radial-menu.js"></script>
+<script>
+    fetch('/data/services.json')
+        .then(res => res.json())
+        .then(data => {
+            const container = document.getElementById('servicesContainer');
+            container.innerHTML = data.services.map(s => `
+                <div class="service-card" data-id="${s.id}">
+                    <i class="fas ${s.icon}"></i>
+                    <h3>${s.title}</h3>
+                    <p>${s.short}</p>
+                    <button class="btn-primary" onclick="openServiceModal('${s.id}')">Details →</button>
+                </div>
+            `).join('');
+        })
+        .catch(err => {
+            console.error(err);
+            document.getElementById('servicesContainer').innerHTML = '<p>Failed to load services.</p>';
+        });
+
+    let servicesData = null;
+    fetch('/data/services.json').then(res => res.json()).then(d => servicesData = d);
+
+    function openServiceModal(id) {
+        if (!servicesData) return;
+        const service = servicesData.services.find(s => s.id === id);
+        if (!service) return;
+
+        const modal = document.getElementById('serviceModal');
+        const body = document.getElementById('modalBody');
+        body.innerHTML = `
+            <h2>${service.title}</h2>
+            <p style="margin:1rem 0;">${service.description}</p>
+            <p><strong>Tags:</strong> ${service.tags.join(', ')}</p>
+            <div style="margin-top:1.5rem;">
+                <a href="/en/#subscribe" class="btn-primary">Discuss project →</a>
+            </div>
+        `;
+        modal.style.display = 'flex';
+    }
+
+    document.getElementById('closeModal').addEventListener('click', () => {
+        document.getElementById('serviceModal').style.display = 'none';
+    });
+    window.addEventListener('click', (e) => {
+        const modal = document.getElementById('serviceModal');
+        if (e.target === modal) modal.style.display = 'none';
+    });
+</script>
+</body>
+</html>

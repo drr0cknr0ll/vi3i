@@ -1,67 +1,53 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Vizion Labs Market | Создаём будущее с AI</title>
-    <meta name="description" content="Веб-разработка, автоматизация, арт-консалтинг. Современные решения для бизнеса.">
-    <link rel="stylesheet" href="/css/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Vision Techno Lab — лаборатория технологий, автоматизации, искусственного интеллекта и разработки цифровых продуктов</title>
+    <meta name="description" content="Комплексные IT-услуги: автоматизация процессов, разработка ПО, веб-сайты, маркетинг, геймдев, издательство. Решения для бизнеса от Vizion Labs." />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
 </head>
 <body>
 
 <canvas id="starCanvas"></canvas>
 
-<!-- Вуаль и кольцо (центральное) -->
-<div id="ringVeil" class="ring-veil" aria-hidden="true"></div>
-<div id="ringMenu" class="ring-menu" aria-hidden="true">
-    <div class="ringItem" data-action="atrium"><i class="fas fa-home"></i><span>Главная</span></div>
-    <div class="ringItem" data-action="services"><i class="fas fa-cogs"></i><span>Услуги</span></div>
-    <div class="ringItem" data-action="projects"><i class="fas fa-folder-open"></i><span>Проекты</span></div>
-    <div class="ringItem" data-action="subscribe"><i class="fas fa-envelope"></i><span>Подписка</span></div>
-    <div class="ringItem" data-action="lang"><i class="fas fa-globe"></i><span>English</span></div>
-    <div class="ringItem" data-action="close"><i class="fas fa-times"></i><span>Закрыть</span></div>
-</div>
-
 <button id="radialToggle" class="radial-toggle"><i class="fas fa-compass"></i></button>
 <div id="radialMenu" class="radial-menu hidden">
-    <div class="radial-item" data-target="home"><i class="fas fa-home"></i><span>Главная</span></div>
-    <div class="radial-item" data-target="services"><i class="fas fa-cogs"></i><span>Услуги</span></div>
-    <div class="radial-item" data-target="projects"><i class="fas fa-folder-open"></i><span>Проекты</span></div>
-    <div class="radial-item" data-target="subscribe"><i class="fas fa-envelope"></i><span>Подписка</span></div>
-    <div class="radial-item" data-href="/labs.html"><i class="fas fa-tools"></i><span>Инструменты</span></div>
+    <div class="radial-item" data-href="/"><i class="fas fa-home"></i><span>Главная</span></div>
+    <div class="radial-item" data-href="/services.html"><i class="fas fa-cubes"></i><span>Услуги</span></div>
+    <div class="radial-item" data-href="/cases.html"><i class="fas fa-briefcase"></i><span>Кейсы</span></div>
+    <div class="radial-item" data-href="/labs.html"><i class="fas fa-tools"></i><span>Продукты</span></div>
+    <div class="radial-item" data-href="/clients.html"><i class="fas fa-handshake"></i><span>Клиенты</span></div>
+    <div class="radial-item" data-href="/#subscribe"><i class="fas fa-envelope"></i><span>Подписка</span></div>
     <div class="radial-item lang-toggle" data-lang="en"><i class="fas fa-globe"></i><span>English</span></div>
 </div>
 
-<div id="tabHint" style="position: fixed; bottom: 20px; left: 20px; background: rgba(0,0,0,0.7); color: #d4af37; padding: 8px 16px; border-radius: 40px; font-size: 0.8rem; opacity: 0; transition: opacity 0.3s; z-index: 10000; pointer-events: none;">Press [Tab] for Nexus Ring</div>
-
 <div class="container">
-    <!-- Hero -->
+
     <section class="hero" id="home">
-        <h1 class="glow">Vizion Labs <span class="gold">Market</span></h1>
-        <p class="subtitle">Мы создаём системы, которые открывают будущее</p>
-        <a href="#projects" class="btn-primary">Смотреть проекты <i class="fas fa-arrow-right"></i></a>
+        <h1>Vision Techno Lab <span class="teal">Market</span></h1>
+        <p class="subtitle">Мы создаём системы, открывающие новые возможности будущего.</p>
+        <a href="#services-preview" class="btn-primary">Смотреть услуги <i class="fas fa-arrow-right arrow"></i></a>
     </section>
 
-    <!-- Services -->
-    <section class="services" id="services">
-        <h2>Услуги</h2>
-        <div class="cards">
-            <div class="card"><i class="fas fa-code"></i><h3>Веб-разработка</h3><p>Современные сайты и приложения на React/Next.js</p></div>
-            <div class="card"><i class="fas fa-robot"></i><h3>Автоматизация</h3><p>AI-агенты, Telegram-боты, CRM интеграции</p></div>
-            <div class="card"><i class="fas fa-palette"></i><h3>Арт-консалтинг</h3><p>Креативные стратегии и нейроискусство</p></div>
+    <section class="services-preview" id="services-preview">
+        <h2>Наши услуги</h2>
+        <div class="cards-masonry" id="previewServices">
+            <div class="loading">Загрузка...</div>
+        </div>
+        <div style="text-align:center; margin-top:2rem;">
+            <a href="/services.html" class="btn-primary">Все услуги →</a>
         </div>
     </section>
 
-    <!-- About -->
     <section class="about" id="about">
         <h2>Философия</h2>
-        <p class="quote">«Будущее принадлежит не тем, кто реагирует на тренды, а тем, кто обнаруживает их до того, как они возникнут»</p>
-        <p>Мы — исследовательская лаборатория, фабрика AI-продуктов и венчурная студия в одном флаконе.</p>
+        <p class="quote">«Будущее создают те, кто видит возможности раньше, чем они становятся очевидными»</p>
+        <p>Мы исследуем идеи, создаём технологии и превращаем эксперименты в продукты.</p>
     </section>
 
-    <!-- Projects -->
     <section class="projects" id="projects">
         <h2>Последние работы</h2>
         <div class="project-grid">
@@ -71,84 +57,122 @@
             <div class="project-card"><h3>MCP Orchestrator</h3><p>Платформа оркестрации AI-агентов</p><span class="tech">Infrastructure</span></div>
         </div>
     </section>
-    <!-- Программки и автоматизации -->
-<section class="products-showcase" id="labs">
-    <h2>Программки и автоматизации</h2>
-    <div class="cards" id="featured-products">
-        <!-- будут загружены из JSON -->
-        <div class="loading">Загрузка...</div>
-    </div>
-    <div style="text-align: center; margin-top: 2rem;">
-        <a href="/labs.html" class="btn-primary">Все инструменты →</a>
-    </div>
-</section>
 
-    <!-- Subscribe -->
+    <section class="products-showcase" id="labs">
+        <h2>Программки и автоматизации</h2>
+        <div class="cards-grid" id="featured-products">
+            <div class="loading">Загрузка...</div>
+        </div>
+        <div style="text-align:center; margin-top:2rem;">
+            <a href="/labs.html" class="btn-primary">Все инструменты →</a>
+        </div>
+    </section>
+
+    <section class="crm-banner" id="crm">
+        <div class="crm-banner-content">
+            <div class="crm-text">
+                <span class="badge">Новая разработка</span>
+                <h2>Dudergoff CRM</h2>
+                <p>Dudergoff CRM-надёжная CRM для небольших компаний. Лиды, сделки, письма и автоматизация без сложных серверов и ежемесячных платежей.</p>
+                <ul class="crm-features">
+                    <li>✔ Учёт контактов и компаний</li>
+                    <li>✔ Автоматизация email-рассылок</li>
+                    <li>✔ Интеграция с Telegram</li>
+                    <li>✔ Бесплатно для малого бизнеса</li>
+                </ul>
+                <a href="/labs.html#dudergoff-crm" class="btn-primary btn-cta">Узнать подробнее →</a>
+            </div>
+            <div class="crm-image">
+                <img src="/assets/crm-dashboard-placeholder.jpg" alt="Dudergoff CRM" loading="lazy">
+            </div>
+        </div>
+    </section>
+
     <section class="subscribe" id="subscribe">
         <h2>Будьте в курсе</h2>
         <p>Подпишитесь на новости о проектах и AI-инновациях</p>
         <form id="subscribeForm">
-            <input type="email" id="email" placeholder="Ваш email" required>
+            <input type="email" id="email" placeholder="Ваш email" required />
             <button type="submit">Подписаться <i class="fas fa-paper-plane"></i></button>
         </form>
         <div id="formMessage" class="message"></div>
     </section>
 
-    <!-- Contact & Social -->
     <footer>
         <div class="social-links">
-            <a href="https://t.me/vizion_labs" target="_blank" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
-            <a href="https://youtube.com/@vizionlabs" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-            <a href="https://instagram.com/vizionlabs" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://t.me/vi3ionlab" target="_blank" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+            <a href="https://youtube.com/@addfuel4699" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://instagram.com/dr.r0cknr0ll" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
         </div>
-        <p>contact@vizionlabs.com</p>
+        <p>addfuel.spb@gmail.com</p>
         <div class="lang-switch">
             <a href="/" class="active">РУ</a> | <a href="/en/">EN</a>
         </div>
-        <p class="copyright">© 2026 Vizion Labs Market — AI-native engineering ecosystem</p>
+        <p class="copyright">© 2026 Vizion Techno Lab — ГК Ковенант / Vision Techno Lab</p>
     </footer>
 </div>
 
 <script src="/js/starfield.js"></script>
 <script src="/js/radial-menu.js"></script>
 <script src="/js/main.js"></script>
+
 <script>
+    fetch('/data/services.json')
+        .then(res => res.json())
+        .then(data => {
+            const container = document.getElementById('previewServices');
+            if (!container) return;
+            const preview = data.services.slice(0, 4);
+            container.innerHTML = preview.map(s => `
+                <div class="card">
+                    <i class="fas ${s.icon}"></i>
+                    <h3>${s.title}</h3>
+                    <p>${s.short}</p>
+                    <a href="/services.html" class="btn-primary" style="margin-top:1rem;">Подробнее →</a>
+                </div>
+            `).join('');
+        })
+        .catch(err => {
+            console.error('Ошибка загрузки услуг:', err);
+            document.getElementById('previewServices').innerHTML = '<p>Не удалось загрузить услуги.</p>';
+        });
+
     fetch('/data/products.json')
         .then(res => res.json())
         .then(data => {
-            const featured = data.products.filter(p => p.featured === true).slice(0, 4);
             const container = document.getElementById('featured-products');
-            if (container) {
-                container.innerHTML = featured.map(p => `
-                    <div class="card">
-                        <i class="fas ${p.id === 'clean-search' ? 'fa-search' : 'fa-cogs'}"></i>
-                        <h3>${p.title}</h3>
-                        <p>${p.short}</p>
-                        <button onclick="window.location.href='/labs.html'" class="btn-primary" style="margin-top: 1rem;">Подробнее</button>
-                    </div>
-                `).join('');
-            }
+            if (!container) return;
+            const featured = data.products.filter(p => p.featured === true).slice(0, 4);
+            container.innerHTML = featured.map(p => `
+                <div class="card">
+                    <i class="fas ${p.id === 'clean-search' ? 'fa-search' : 'fa-cogs'}"></i>
+                    <h3>${p.title}</h3>
+                    <p>${p.short}</p>
+                    <a href="/labs.html" class="btn-primary" style="margin-top:1rem;">Подробнее →</a>
+                </div>
+            `).join('');
+        })
+        .catch(err => {
+            console.error('Ошибка загрузки продуктов:', err);
+            document.getElementById('featured-products').innerHTML = '<p>Не удалось загрузить продукты.</p>';
+        });
+
+    fetch('/data/clients.json')
+        .then(res => res.json())
+        .then(data => {
+            const container = document.getElementById('featuredClients');
+            if (!container) return;
+            const featured = data.clients.filter(c => c.featured === true).slice(0, 6);
+        container.innerHTML = featured.map(c => `
+            <img src="${c.logo}" alt="${c.name}" loading="lazy">
+        `).join('');
+        })
+        .catch(err => {
+            console.error('Ошибка загрузки клиентов:', err);
+            const container = document.getElementById('featuredClients');
+            if (container) container.innerHTML = '<p>Не удалось загрузить логотипы.</p>';
         });
 </script>
+
 </body>
-<!-- Кольцо управления (Nexus Ring) -->
-    <div class="ringItem" data-action="atrium">
-        <i class="fas fa-home"></i><span>Главная</span>
-    </div>
-    <div class="ringItem" data-action="services">
-        <i class="fas fa-cogs"></i><span>Услуги</span>
-    </div>
-    <div class="ringItem" data-action="projects">
-        <i class="fas fa-folder-open"></i><span>Проекты</span>
-    </div>
-    <div class="ringItem" data-action="subscribe">
-        <i class="fas fa-envelope"></i><span>Подписка</span>
-    </div>
-    <div class="ringItem" data-action="lang">
-        <i class="fas fa-globe"></i><span>English</span>
-    </div>
-    <div class="ringItem" data-action="close">
-        <i class="fas fa-times"></i><span>Закрыть</span>
-    </div>
-</div>
 </html>

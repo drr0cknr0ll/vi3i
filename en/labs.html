@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Инструменты и автоматизации — Vision Techno Lab</title>
-    <link rel="stylesheet" href="/css/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tools & Automations — Vizion Labs</title>
+    <meta name="description" content="Utilities, bots, AI tools, browser extensions, n8n automations, games and business tools by Vizion Labs." />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
     <style>
+        .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 2rem;
@@ -18,17 +20,17 @@
             backdrop-filter: blur(8px);
             border-radius: 24px;
             padding: 1.5rem;
-            border: 1px solid rgba(0,195,160, 0.2);
+            border: 1px solid rgba(0, 195, 160, 0.2);
             transition: transform 0.2s, border-color 0.2s;
         }
         .product-card:hover {
             transform: translateY(-5px);
-            border-color: var(--teal, #00c3a0);
+            border-color: var(--gold, #00c3a0);
         }
         .badge {
             display: inline-block;
-            background: rgba(0,195,160, 0.2);
-            color: var(--teal, #00c3a0);
+            background: rgba(0, 195, 160, 0.2);
+            color: var(--gold, #00c3a0);
             border-radius: 20px;
             padding: 0.2rem 0.8rem;
             font-size: 0.7rem;
@@ -44,17 +46,18 @@
         }
         .filter-btn {
             background: transparent;
-            border: 1px solid rgba(0,195,160, 0.4);
+            border: 1px solid rgba(0, 195, 160, 0.4);
             padding: 0.4rem 1rem;
             border-radius: 30px;
             cursor: pointer;
             transition: all 0.2s;
             color: #f0f0f0;
         }
-        .filter-btn.active, .filter-btn:hover {
-            background: var(--teal, #00c3a0);
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--gold, #00c3a0);
             color: #0a0a0f;
-            border-color: var(--teal);
+            border-color: var(--gold);
         }
         .modal {
             display: none;
@@ -63,7 +66,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(8px);
             justify-content: center;
             align-items: center;
@@ -75,7 +78,7 @@
             max-width: 600px;
             width: 90%;
             padding: 2rem;
-            border: 1px solid var(--teal);
+            border: 1px solid var(--gold, #00c3a0);
             position: relative;
         }
         .close-modal {
@@ -84,12 +87,17 @@
             right: 1.5rem;
             font-size: 1.8rem;
             cursor: pointer;
-            color: var(--teal);
+            color: var(--gold, #00c3a0);
         }
         .partner-section {
             margin-top: 3rem;
             padding-top: 2rem;
-            border-top: 1px solid rgba(0,195,160,0.3);
+            border-top: 1px solid rgba(0, 195, 160, 0.3);
+        }
+        .loading {
+            text-align: center;
+            color: #aaa;
+            padding: 2rem;
         }
     </style>
 </head>
@@ -98,74 +106,79 @@
 <canvas id="starCanvas"></canvas>
 
 <div class="container">
+    <!-- Top navigation -->
     <nav class="top-nav" style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 0;">
-        <a href="/" class="logo" style="font-size: 1.5rem; font-weight: bold;">VIZION<span style="color: var(--teal);">LABS</span></a>
+        <a href="/en/" class="logo" style="font-size: 1.5rem; font-weight: bold;">VIZION<span style="color: var(--gold, #00c3a0);">LABS</span></a>
         <div>
-            <a href="/" style="margin-right: 1rem;">Главная</a>
-            <a href="/labs.html" style="color: var(--teal);">Инструменты</a>
+            <a href="/en/" style="margin-right: 1rem;">Home</a>
+            <a href="/en/labs.html" style="color: var(--gold, #00c3a0);">Tools</a>
+            <a href="/en/services.html" style="margin-left: 1rem;">Services</a>
         </div>
     </nav>
 
+    <!-- Hero -->
     <header class="hero" style="text-align: center; margin: 3rem 0;">
-        <h1>Лаборатория автоматизации</h1>
-        <p class="subtitle">Утилиты, боты и движки — всё, что мы создаём для контроля над цифровым хаосом</p>
+        <h1>Automation Lab</h1>
+        <p class="subtitle">Utilities, bots and engines — everything we build to control digital chaos.</p>
     </header>
 
+    <!-- Filters -->
     <div class="filter-bar" id="filterBar">
-        <button class="filter-btn active" data-cat="all">Все</button>
-        <button class="filter-btn" data-cat="Браузерные расширения">Расширения</button>
+        <button class="filter-btn active" data-cat="all">All</button>
+        <button class="filter-btn" data-cat="Браузерные расширения">Extensions</button>
         <button class="filter-btn" data-cat="n8n-автоматизации">n8n</button>
         <button class="filter-btn" data-cat="AI-инструменты">AI</button>
-        <button class="filter-btn" data-cat="Игры и симуляторы">Игры</button>
-        <button class="filter-btn" data-cat="Бизнес-инструменты">Бизнес</button>
-        <button class="filter-btn" data-cat="Скрипты">Скрипты</button>
+        <button class="filter-btn" data-cat="Игры и симуляторы">Games</button>
+        <button class="filter-btn" data-cat="Бизнес-инструменты">Business</button>
+        <button class="filter-btn" data-cat="Скрипты">Scripts</button>
     </div>
 
+    <!-- Products grid -->
     <div id="productsContainer" class="product-grid">
-        <!-- сюда будут загружены карточки -->
-        <div class="loading">Загрузка инструментов...</div>
+        <div class="loading">Loading tools...</div>
     </div>
 
-    <!-- Блок партнёров -->
+    <!-- Partners -->
     <div class="partner-section">
-        <h2 style="text-align: center;">Экосистема Vizion Labs</h2>
+        <h2 style="text-align: center;">Vizion Labs Ecosystem</h2>
         <div id="partnersContainer" class="product-grid" style="grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));">
-            <!-- партнёры будут загружены -->
+            <!-- partners loaded from JSON -->
         </div>
     </div>
 
-    <!-- Блок сообщества -->
+    <!-- Community -->
     <div style="margin: 3rem 0; text-align: center;">
-        <h2>В кругу своих</h2>
+        <h2>In our community</h2>
         <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 1rem;">
             <iframe src="https://t.me/s/vi3ionlab?embed=1&single=1&preview=1" style="width: 100%; max-width: 500px; height: 300px; border: none; border-radius: 16px;"></iframe>
             <div style="background: rgba(26,26,36,0.6); padding: 1.5rem; border-radius: 24px; text-align: left;">
-                <p><i class="fab fa-telegram"></i> <a href="https://t.me/vi3ionlab" target="_blank">@vi3ionlab</a> — новости и обсуждения</p>
-                <p><i class="fab fa-vk"></i> <a href="https://vk.com/vision_tl" target="_blank">VK</a></p>
-                <p><i class="fab fa-facebook"></i> <a href="www.facebook.com/groups/visiontl" target="_blank">Facebook</a></p>
-                <p><i class="fab fa-threads"></i> <a href="https://threads.net/@dr.r0cknr0ll" target="_blank">Threads</a></p>
+                <p><i class="fab fa-telegram"></i> <a href="https://t.me/vi3ionlab" target="_blank">@vi3ionlab</a> — news and discussions</p>
+                <p><i class="fab fa-vk"></i> <a href="https://vk.com/vi3ion" target="_blank">VK</a></p>
+                <p><i class="fab fa-facebook"></i> <a href="https://facebook.com/vi3ion" target="_blank">Facebook</a></p>
+                <p><i class="fab fa-threads"></i> <a href="https://threads.net/@vi3ion" target="_blank">Threads</a></p>
             </div>
         </div>
     </div>
 
     <footer style="text-align: center; padding: 2rem 0;">
-        <p>© 2026 Vision Techno Lab Market — AI-native engineering ecosystem</p>
+        <p>© 2026 Vizion Labs — Covenant Group / Vision Techno Lab</p>
     </footer>
 </div>
 
+<!-- Radial menu (compass) -->
 <button id="radialToggle" class="radial-toggle"><i class="fas fa-compass"></i></button>
 <div id="radialMenu" class="radial-menu hidden">
-    <div class="radial-item" data-target="home"><i class="fas fa-home"></i><span>Главная</span></div>
-    <div class="radial-item" data-target="services"><i class="fas fa-cogs"></i><span>Услуги</span></div>
-    <div class="radial-item" data-target="projects"><i class="fas fa-folder-open"></i><span>Проекты</span></div>
-    <div class="radial-item" data-target="subscribe"><i class="fas fa-envelope"></i><span>Подписка</span></div>
-    <div class="radial-item" data-href="/labs.html"><i class="fas fa-tools"></i><span>Инструменты</span></div>
-    <div class="radial-item lang-toggle" data-lang="en"><i class="fas fa-globe"></i><span>English</span></div>
+    <div class="radial-item" data-href="/en/"><i class="fas fa-home"></i><span>Home</span></div>
+    <div class="radial-item" data-href="/en/services.html"><i class="fas fa-cogs"></i><span>Services</span></div>
+    <div class="radial-item" data-href="/en/labs.html"><i class="fas fa-tools"></i><span>Tools</span></div>
+    <div class="radial-item" data-href="/en/#subscribe"><i class="fas fa-envelope"></i><span>Subscribe</span></div>
+    <div class="radial-item lang-toggle" data-lang="ru"><i class="fas fa-globe"></i><span>Русский</span></div>
 </div>
 
 <script src="/js/starfield.js"></script>
 <script src="/js/radial-menu.js"></script>
 <script>
+    // Load products and partners from /data/products.json
     fetch('/data/products.json')
         .then(res => res.json())
         .then(data => {
@@ -176,14 +189,14 @@
             setupFilters(products);
         })
         .catch(err => {
-            document.getElementById('productsContainer').innerHTML = '<p>Ошибка загрузки данных.</p>';
+            document.getElementById('productsContainer').innerHTML = '<p>Failed to load data.</p>';
             console.error(err);
         });
 
     function renderProducts(products) {
         const container = document.getElementById('productsContainer');
         if (!products.length) {
-            container.innerHTML = '<p>Нет продуктов для отображения.</p>';
+            container.innerHTML = '<p>No products to display.</p>';
             return;
         }
         container.innerHTML = products.map(p => `
@@ -193,8 +206,8 @@
                     ${p.tags?.map(t => `<span class="badge">${t}</span>`).join('')}
                 </div>
                 <p class="short">${p.short}</p>
-                <div class="price" style="margin: 1rem 0; font-size: 0.9rem; color: var(--teal);">${p.price}</div>
-                <button class="btn-primary" onclick="openProductModal('${p.id}')">Подробнее →</button>
+                <div class="price" style="margin: 1rem 0; font-size: 0.9rem; color: var(--gold, #00c3a0);">${p.price}</div>
+                <button class="btn-primary" onclick="openProductModal('${p.id}')">Details →</button>
             </div>
         `).join('');
     }
@@ -206,7 +219,7 @@
             <div class="product-card" style="background: rgba(0,0,0,0.4);">
                 <h3>${p.name}</h3>
                 <p>${p.description}</p>
-                <a href="${p.url}" target="_blank" class="btn-primary" style="display: inline-block; margin-top: 1rem;">Перейти →</a>
+                <a href="${p.url}" target="_blank" class="btn-primary" style="display: inline-block; margin-top: 1rem;">Visit →</a>
                 ${p.telegram ? `<p style="margin-top: 0.5rem;"><i class="fab fa-telegram"></i> <a href="${p.telegram}" target="_blank">Telegram</a></p>` : ''}
             </div>
         `).join('');
@@ -242,7 +255,7 @@
         })
         .catch(err => {
             console.error(err);
-            document.getElementById('productsContainer').innerHTML = '<p>Ошибка загрузки данных.</p>';
+            document.getElementById('productsContainer').innerHTML = '<p>Failed to load data.</p>';
         });
 
     async function openProductModal(productId) {
@@ -253,22 +266,22 @@
         if (!product) return;
 
         let actionHtml = '';
-        if (product.demoUrl) actionHtml = `<a href="${product.demoUrl}" class="btn-primary" target="_blank">Играть в демо</a>`;
-        else if (product.downloadUrl) actionHtml = `<a href="${product.downloadUrl}" class="btn-primary">Скачать демо</a>`;
-        else if (product.paymentUrl) actionHtml = `<a href="${product.paymentUrl}" target="_blank" class="btn-primary">Купить / Поддержать</a>`;
-        else if (product.contactUrl) actionHtml = `<a href="${product.contactUrl}" target="_blank" class="btn-primary">Запросить адаптацию</a>`;
-        else if (product.subscribeUrl) actionHtml = `<a href="${product.subscribeUrl}" class="btn-primary">Подписаться на релиз</a>`;
+        if (product.demoUrl) actionHtml = `<a href="${product.demoUrl}" class="btn-primary" target="_blank">Play demo</a>`;
+        else if (product.downloadUrl) actionHtml = `<a href="${product.downloadUrl}" class="btn-primary">Download demo</a>`;
+        else if (product.paymentUrl) actionHtml = `<a href="${product.paymentUrl}" target="_blank" class="btn-primary">Buy / Support</a>`;
+        else if (product.contactUrl) actionHtml = `<a href="${product.contactUrl}" target="_blank" class="btn-primary">Request customization</a>`;
+        else if (product.subscribeUrl) actionHtml = `<a href="${product.subscribeUrl}" class="btn-primary">Subscribe to release</a>`;
 
         const modalHtml = `
             <div class="modal-content">
                 <span class="close-modal" onclick="closeModal()">&times;</span>
                 <h2>${product.title}</h2>
                 <p>${product.description}</p>
-                <p><strong>Статус:</strong> ${product.status}</p>
-                <p><strong>Цена:</strong> ${product.price}</p>
+                <p><strong>Status:</strong> ${product.status}</p>
+                <p><strong>Price:</strong> ${product.price}</p>
                 <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
                     ${actionHtml}
-                    ${product.telegram ? `<a href="${product.telegram}" target="_blank" class="btn-primary">Обсудить в Telegram</a>` : ''}
+                    ${product.telegram ? `<a href="${product.telegram}" target="_blank" class="btn-primary">Discuss on Telegram</a>` : ''}
                 </div>
             </div>
         `;

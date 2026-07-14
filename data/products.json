@@ -9,22 +9,9 @@
       "short": "Фильтр AI-мусора в выдаче Google, Яндекс, Bing",
       "description": "Расширение для Chrome, Firefox, Edge. Помечает и скрывает AI-спам, улучшает качество поиска.",
       "downloadUrl": "https://addons.mozilla.org/ru/firefox/addon/clean-search/",
-      "paymentUrl": "https://t.me/aifilter_bot",
+      "paymentUrl": "https://t.me/+Q_zRTbyAA8E2ZmU6",
       "telegram": "https://t.me/vi3ionlab",
       "tags": ["browser-extension", "ai-filter"],
-      "featured": true
-    },
-    {
-      "id": "n8n-backup-helper",
-      "title": "n8n Backup Helper",
-      "category": "n8n-автоматизации",
-      "status": "mvp",
-      "price": "donationware",
-      "short": "Бэкап и восстановление self-hosted n8n",
-      "description": "PowerShell-скрипты для экспорта workflows, проверки окружения, health‑check, подготовки к переносу.",
-      "downloadUrl": "/downloads/n8n-backup-helper-demo.zip",
-      "telegram": "https://t.me/vi3ionlab",
-      "tags": ["n8n", "devops"],
       "featured": true
     },
     {
@@ -53,18 +40,6 @@
       "tags": ["business", "legal"]
     },
     {
-      "id": "telegram-digest",
-      "title": "Telegram Digest Factory",
-      "category": "AI-инструменты",
-      "status": "alpha",
-      "price": "по запросу",
-      "short": "Автоматическая подготовка дайджестов из ссылок и заметок",
-      "description": "Структура выпуска, редакторская заметка, пост и промпт для иллюстрации.",
-      "contactUrl": "https://t.me/vi3ionlab",
-      "telegram": "https://t.me/vi3ionlab",
-      "tags": ["telegram", "content"]
-    },
-    {
       "id": "ai-code-checker",
       "title": "AI Code Checker",
       "category": "AI-инструменты",
@@ -89,16 +64,17 @@
       "tags": ["telegram", "proxy"]
     },
     {
-      "id": "sales-core-lite",
-      "title": "Sales Core Lite",
+      "id": "dudergoff-crm",
+      "title": "Dudergoff CRM Lite",
       "category": "Бизнес-инструменты",
-      "status": "mvp",
+      "status": "ready",
       "price": "по запросу",
       "short": "Мини-CRM на SQLite и n8n для учёта лидов и сделок",
-      "description": "Учёт писем, контактов, статусов ответов, сделок.",
+      "description": "Учёт писем, контактов, статусов ответов, сделок. Наша новая разработка для малого и среднего бизнеса.",
       "contactUrl": "https://t.me/vi3ionlab",
       "telegram": "https://t.me/vi3ionlab",
-      "tags": ["crm", "n8n"]
+      "tags": ["crm", "n8n"],
+      "featured": true
     }
   ],
   "partners": [
@@ -106,7 +82,7 @@
       "name": "bc-sco.com",
       "url": "https://bc-sco.com",
       "description": "Деловой Центр стран ШОС+",
-      "telegram": "https://t.me/Public_Statement_Lab"
+      "telegram": "https://t.me/dc_sco"
     },
     {
       "name": "baazaar.ru",

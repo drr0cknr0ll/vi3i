@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Studies — Vizion Labs</title>
+    <meta name="description" content="Real success stories: automation, AI implementation, process optimization — measurable results for businesses.">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .cases-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            margin: 2rem 0;
+        }
+        .case-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(18px);
+            border-radius: 28px;
+            padding: 2rem;
+            border: 1px solid var(--border-light);
+            transition: 0.3s;
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+        .case-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--teal);
+        }
+        .case-logo {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.04);
+            border-radius: 16px;
+            padding: 0.5rem;
+        }
+        .case-logo img {
+            max-width: 100%;
+            max-height: 80px;
+            object-fit: contain;
+            filter: saturate(0.6) brightness(0.8);
+            transition: 0.3s;
+        }
+        .case-card:hover .case-logo img {
+            filter: saturate(1) brightness(1);
+        }
+        .case-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        .case-meta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.8rem;
+        }
+        .case-meta span {
+            background: rgba(0,195,160,0.08);
+            border: 1px solid rgba(0,195,160,0.15);
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            color: var(--teal);
+        }
+        .case-result {
+            background: rgba(0,195,160,0.05);
+            border-left: 3px solid var(--teal);
+            padding: 0.8rem 1.2rem;
+            margin: 0.8rem 0;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+        @media (max-width: 768px) {
+            .case-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .case-logo {
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="starCanvas"></canvas>
+
+<div class="container">
+    <nav class="top-nav">
+        <a href="/en/" class="logo" style="font-size:1.5rem;font-weight:bold;">VIZION<span style="color:var(--teal);">LABS</span></a>
+        <div>
+            <a href="/en/">Home</a>
+            <a href="/en/services.html">Services</a>
+            <a href="/en/clients.html">Clients</a>
+            <a href="/en/cases.html" class="active">Cases</a>
+        </div>
+    </nav>
+
+    <header style="text-align:center;margin:3rem 0;">
+        <h1>Our Projects</h1>
+        <p class="subtitle">Real implementation stories that delivered measurable results</p>
+    </header>
+
+    <div id="casesContainer" class="cases-grid">
+        <div class="loading">Loading cases...</div>
+    </div>
+
+    <footer style="text-align:center;padding:2rem 0;margin-top:3rem;border-top:1px solid rgba(255,255,255,0.05);">
+        <p>© 2026 Vizion Labs — Covenant Group / Vision Techno Lab</p>
+    </footer>
+</div>
+
+<!-- Radial Menu -->
+<button id="radialToggle" class="radial-toggle"><i class="fas fa-compass"></i></button>
+<div id="radialMenu" class="radial-menu hidden">
+    <div class="radial-item" data-href="/en/"><i class="fas fa-home"></i><span>Home</span></div>
+    <div class="radial-item" data-href="/en/services.html"><i class="fas fa-cubes"></i><span>Services</span></div>
+    <div class="radial-item" data-href="/en/clients.html"><i class="fas fa-handshake"></i><span>Clients</span></div>
+    <div class="radial-item" data-href="/en/cases.html"><i class="fas fa-briefcase"></i><span>Cases</span></div>
+    <div class="radial-item" data-href="/en/labs.html"><i class="fas fa-tools"></i><span>Products</span></div>
+    <div class="radial-item" data-href="/en/#subscribe"><i class="fas fa-envelope"></i><span>Subscribe</span></div>
+    <div class="radial-item lang-toggle" data-lang="ru"><i class="fas fa-globe"></i><span>Русский</span></div>
+</div>
+
+<script src="/js/starfield.js"></script>
+<script src="/js/radial-menu.js"></script>
+<script>
+    fetch('/data/cases.json')
+        .then(res => res.json())
+        .then(data => {
+            const container = document.getElementById('casesContainer');
+            container.innerHTML = data.cases.map(c => `
+                <div class="case-card">
+                    <div class="case-logo">
+                        <img src="${c.logo}" alt="${c.client}" loading="lazy">
+                    </div>
+                    <div class="case-info">
+                        <h3>${c.title}</h3>
+                        <div class="case-meta">
+                            <span>${c.industry}</span>
+                            <span>${c.client}</span>
+                            ${c.featured ? '<span style="background:var(--teal);color:var(--bg-primary);">⭐ Featured</span>' : ''}
+                        </div>
+                        <p>${c.description}</p>
+                        <div class="case-result">📊 ${c.result}</div>
+                        <a href="/en/#contact" class="btn-primary" style="margin-top:0.8rem;">Discuss your project →</a>
+                    </div>
+                </div>
+            `).join('');
+        })
+        .catch(err => {
+            console.error(err);
+            document.getElementById('casesContainer').innerHTML = '<p>Failed to load cases.</p>';
+        });
+</script>
+</body>
+</html>

@@ -1,64 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Vizion Labs Market | Building the Future with AI</title>
-    <meta name="description" content="Web development, automation, art consulting. Modern solutions for business.">
-    <link rel="stylesheet" href="/css/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Vision Techno Labs — a technology lab creating software, automation, AI products and games that help people work smarter, learn faster and explore new ideas</title>
+    <meta name="description" content="Comprehensive IT services: process automation, software development, websites, marketing, game dev, publishing. Business solutions from Vizion Labs." />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
 </head>
 <body>
 
+<!-- Stars -->
 <canvas id="starCanvas"></canvas>
-
-<!-- Вуаль и кольцо (центральное) -->
-<div id="ringVeil" class="ring-veil" aria-hidden="true"></div>
-<div id="ringMenu" class="ring-menu" aria-hidden="true">
-    <div class="ringItem" data-action="atrium"><i class="fas fa-home"></i><span>Главная</span></div>
-    <div class="ringItem" data-action="services"><i class="fas fa-cogs"></i><span>Услуги</span></div>
-    <div class="ringItem" data-action="projects"><i class="fas fa-folder-open"></i><span>Проекты</span></div>
-    <div class="ringItem" data-action="subscribe"><i class="fas fa-envelope"></i><span>Подписка</span></div>
-    <div class="ringItem" data-action="lang"><i class="fas fa-globe"></i><span>English</span></div>
-    <div class="ringItem" data-action="close"><i class="fas fa-times"></i><span>Закрыть</span></div>
-</div>
 
 <button id="radialToggle" class="radial-toggle"><i class="fas fa-compass"></i></button>
 <div id="radialMenu" class="radial-menu hidden">
-    <div class="radial-item" data-target="home"><i class="fas fa-home"></i><span>Главная</span></div>
-    <div class="radial-item" data-target="services"><i class="fas fa-cogs"></i><span>Услуги</span></div>
-    <div class="radial-item" data-target="projects"><i class="fas fa-folder-open"></i><span>Проекты</span></div>
-    <div class="radial-item" data-target="subscribe"><i class="fas fa-envelope"></i><span>Подписка</span></div>
-    <div class="radial-item lang-toggle" data-lang="en"><i class="fas fa-globe"></i><span>English</span></div>
+    <div class="radial-item" data-href="/en/"><i class="fas fa-home"></i><span>Home</span></div>
+    <div class="radial-item" data-href="/en/services.html"><i class="fas fa-cubes"></i><span>Services</span></div>
+    <div class="radial-item" data-href="/en/cases.html"><i class="fas fa-briefcase"></i><span>Cases</span></div>
+    <div class="radial-item" data-href="/en/labs.html"><i class="fas fa-tools"></i><span>Products</span></div>
+    <div class="radial-item" data-href="/clients.html"><i class="fas fa-handshake"></i><span>Clients</span></div>
+    <div class="radial-item" data-href="/en/#subscribe"><i class="fas fa-envelope"></i><span>Subscribe</span></div>
+    <div class="radial-item lang-toggle" data-lang="ru"><i class="fas fa-globe"></i><span>Русский</span></div>
 </div>
 
-<div id="tabHint" style="position: fixed; bottom: 20px; left: 20px; background: rgba(0,0,0,0.7); color: #d4af37; padding: 8px 16px; border-radius: 40px; font-size: 0.8rem; opacity: 0; transition: opacity 0.3s; z-index: 10000; pointer-events: none;">Press [Tab] for Nexus Ring</div>
-
 <div class="container">
+
     <section class="hero" id="home">
         <h1 class="glow">Vizion Labs <span class="gold">Market</span></h1>
-        <p class="subtitle">We build systems that discover the future</p>
-        <a href="#projects" class="btn-primary">View projects <i class="fas fa-arrow-right"></i></a>
+        <p class="subtitle">We build technologies that help people discover and create the future</p>
+        <a href="#services-preview" class="btn-primary">View services <i class="fas fa-arrow-right"></i></a>
     </section>
 
-    <section class="services" id="services">
-        <h2>Services</h2>
-        <div class="cards">
-            <div class="card"><i class="fas fa-code"></i><h3>Web Development</h3><p>Modern sites & apps with React/Next.js</p></div>
-            <div class="card"><i class="fas fa-robot"></i><h3>Automation</h3><p>AI agents, Telegram bots, CRM integrations</p></div>
-            <div class="card"><i class="fas fa-palette"></i><h3>Art Consulting</h3><p>Creative strategies & neuro-art</p></div>
+    <section class="clients-preview">
+    <h2>They trust us</h2>
+    <div class="clients-logos" id="featuredClients">
+        <div class="loading">Loading...</div>
+    </div>
+    <div style="text-align:center; margin-top:1.5rem;">
+        <a href="/clients.html" class="btn-primary">All clients →</a>
+    </div>
+</section>
+
+    <section class="services-preview" id="services-preview">
+        <h2>Our Services</h2>
+        <div class="cards" id="previewServices">
+            <div class="loading">Loading...</div>
+        </div>
+        <div style="text-align:center; margin-top:2rem;">
+            <a href="/en/services.html" class="btn-primary">All services →</a>
         </div>
     </section>
 
     <section class="about" id="about">
         <h2>Philosophy</h2>
-        <p class="quote">“The future belongs not to those who react to trends, but to those who detect them before they exist.”</p>
-        <p>We are a research lab, AI product factory, and venture studio in one.</p>
+        <p class="quote">«The future belongs not to those who follow trends, but to those who discover them before everyone else»</p>
+        <p>Vision Techno Labs combines a research lab, an AI product factory and a venture studio to transform ideas into real products.</p>
     </section>
 
     <section class="projects" id="projects">
-        <h2>Latest Projects</h2>
+        <h2>Recent works</h2>
         <div class="project-grid">
             <div class="project-card"><h3>Clean Search</h3><p>Browser extension filtering AI spam</p><span class="tech">Browser Extension</span></div>
             <div class="project-card"><h3>AI Code Linter</h3><p>VS Code extension for anti-pattern detection</p><span class="tech">Developer Tool</span></div>
@@ -67,11 +69,21 @@
         </div>
     </section>
 
+    <section class="products-showcase" id="labs">
+        <h2>Microtools & Automations</h2>
+        <div class="cards" id="featured-products">
+            <div class="loading">Loading...</div>
+        </div>
+        <div style="text-align:center; margin-top:2rem;">
+            <a href="/en/labs.html" class="btn-primary">All tools →</a>
+        </div>
+    </section>
+
     <section class="subscribe" id="subscribe">
-        <h2>Stay Updated</h2>
+        <h2>Stay tuned</h2>
         <p>Subscribe to news about projects and AI innovations</p>
         <form id="subscribeForm">
-            <input type="email" id="email" placeholder="Your email" required>
+            <input type="email" id="email" placeholder="Your email" required />
             <button type="submit">Subscribe <i class="fas fa-paper-plane"></i></button>
         </form>
         <div id="formMessage" class="message"></div>
@@ -79,51 +91,63 @@
 
     <footer>
         <div class="social-links">
-            <a href="https://t.me/vizion_labs" target="_blank" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
-            <a href="https://youtube.com/@vizionlabs" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-            <a href="https://instagram.com/vizionlabs" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://t.me/vi3ionlab" target="_blank" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+            <a href="https://youtube.com/@addfuel4699" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://instagram.com/dr.r0cknr0ll" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
         </div>
-        <p>contact@vizionlabs.com</p>
+        <p>addfuel.spb@gmail.com</p>
         <div class="lang-switch">
             <a href="/">RU</a> | <a href="/en/" class="active">EN</a>
         </div>
-        <p class="copyright">© 2026 Vizion Labs Market — AI-native engineering ecosystem</p>
+        <p class="copyright">© 2026 Vizion Labs — Covenant Group / Vision Techno Lab</p>
     </footer>
-</div>
-
-<button id="radialToggle" class="radial-toggle"><i class="fas fa-compass"></i></button>
-<div id="radialMenu" class="radial-menu hidden">
-    <div class="radial-item" data-target="home"><i class="fas fa-home"></i><span>Home</span></div>
-    <div class="radial-item" data-target="services"><i class="fas fa-cogs"></i><span>Services</span></div>
-    <div class="radial-item" data-target="projects"><i class="fas fa-folder-open"></i><span>Projects</span></div>
-    <div class="radial-item" data-target="subscribe"><i class="fas fa-envelope"></i><span>Subscribe</span></div>
-    <div class="radial-item lang-toggle" data-lang="ru"><i class="fas fa-globe"></i><span>Русский</span></div>
 </div>
 
 <script src="/js/starfield.js"></script>
 <script src="/js/radial-menu.js"></script>
 <script src="/js/main.js"></script>
+
+<script>
+    fetch('/data/services.json')
+        .then(res => res.json())
+        .then(data => {
+            const container = document.getElementById('previewServices');
+            if (!container) return;
+            const preview = data.services.slice(0, 4);
+            container.innerHTML = preview.map(s => `
+                <div class="card">
+                    <i class="fas ${s.icon}"></i>
+                    <h3>${s.title}</h3>
+                    <p>${s.short}</p>
+                    <button onclick="window.location.href='/en/services.html'" class="btn-primary" style="margin-top:1rem;">Details</button>
+                </div>
+            `).join('');
+        })
+        .catch(err => {
+            console.error(err);
+            document.getElementById('previewServices').innerHTML = '<p>Failed to load services.</p>';
+        });
+
+    fetch('/data/products.json')
+        .then(res => res.json())
+        .then(data => {
+            const container = document.getElementById('featured-products');
+            if (!container) return;
+            const featured = data.products.filter(p => p.featured === true).slice(0, 4);
+            container.innerHTML = featured.map(p => `
+                <div class="card">
+                    <i class="fas ${p.id === 'clean-search' ? 'fa-search' : 'fa-cogs'}"></i>
+                    <h3>${p.title}</h3>
+                    <p>${p.short}</p>
+                    <button onclick="window.location.href='/en/labs.html'" class="btn-primary" style="margin-top:1rem;">Details</button>
+                </div>
+            `).join('');
+        })
+        .catch(err => {
+            console.error(err);
+            document.getElementById('featured-products').innerHTML = '<p>Failed to load products.</p>';
+        });
+</script>
+
 </body>
-<!-- Control ring  -->
-<div id="ringVeil" class="ring-veil" aria-hidden="true"></div>
-<div id="ringMenu" class="ring-menu" aria-hidden="true">
-    <div class="ringItem" data-action="atrium">
-        <i class="fas fa-home"></i><span>Home</span>
-    </div>
-    <div class="ringItem" data-action="services">
-        <i class="fas fa-cogs"></i><span>Services</span>
-    </div>
-    <div class="ringItem" data-action="projects">
-        <i class="fas fa-folder-open"></i><span>Projects</span>
-    </div>
-    <div class="ringItem" data-action="subscribe">
-        <i class="fas fa-envelope"></i><span>Subscribe</span>
-    </div>
-    <div class="ringItem" data-action="lang">
-        <i class="fas fa-globe"></i><span>English</span>
-    </div>
-    <div class="ringItem" data-action="close">
-        <i class="fas fa-times"></i><span>Close</span>
-    </div>
-</div>
 </html>

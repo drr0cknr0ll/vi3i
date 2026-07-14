@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Клиенты и партнёры — Vizion Labs</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+            align-items: center;
+        }
+        .client-card {
+            background: rgba(8,15,28,0.4);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 1.5rem 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid rgba(255,255,255,0.06);
+            transition: 0.2s;
+            height: 120px;
+        }
+        .client-card:hover {
+            border-color: var(--teal);
+            transform: scale(1.02);
+        }
+        .client-card img {
+            max-width: 100%;
+            max-height: 80px;
+            width: auto;
+            height: auto;
+            filter: saturate(0.7) brightness(0.9);
+            transition: 0.3s;
+        }
+        .client-card:hover img {
+            filter: saturate(1) brightness(1);
+        }
+        .client-name {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="starCanvas"></canvas>
+
+<div class="container">
+    <nav class="top-nav">
+        <a href="/" class="logo" style="font-size:1.5rem;font-weight:bold;">VIZION<span style="color:var(--teal);">LABS</span></a>
+        <div>
+            <a href="/">Главная</a>
+            <a href="/services.html">Услуги</a>
+            <a href="/clients.html" class="active">Клиенты</a>
+            <a href="/cases.html">Кейсы</a>
+        </div>
+    </nav>
+
+    <header style="text-align:center;margin:3rem 0;">
+        <h1>Нам доверяют</h1>
+        <p class="subtitle">Более 25 компаний выбрали наши решения для автоматизации и развития</p>
+    </header>
+
+    <div id="clientsContainer" class="clients-grid">
+        <div class="loading">Загрузка...</div>
+    </div>
+
+    <footer style="text-align:center;padding:2rem 0;margin-top:3rem;border-top:1px solid rgba(255,255,255,0.05);">
+        <p>© 2026 Vizion Labs — ГК Ковенант / Vision Techno Lab</p>
+    </footer>
+</div>
+
+<!-- Радиальное меню -->
+<button id="radialToggle" class="radial-toggle"><i class="fas fa-compass"></i></button>
+<div id="radialMenu" class="radial-menu hidden">
+    <div class="radial-item" data-href="/"><i class="fas fa-home"></i><span>Главная</span></div>
+    <div class="radial-item" data-href="/services.html"><i class="fas fa-cubes"></i><span>Услуги</span></div>
+    <div class="radial-item" data-href="/clients.html"><i class="fas fa-handshake"></i><span>Клиенты</span></div>
+    <div class="radial-item" data-href="/cases.html"><i class="fas fa-briefcase"></i><span>Кейсы</span></div>
+    <div class="radial-item" data-href="/labs.html"><i class="fas fa-tools"></i><span>Продукты</span></div>
+    <div class="radial-item" data-href="/#subscribe"><i class="fas fa-envelope"></i><span>Подписка</span></div>
+    <div class="radial-item lang-toggle" data-lang="en"><i class="fas fa-globe"></i><span>English</span></div>
+</div>
+
+<script src="/js/starfield.js"></script>
+<script src="/js/radial-menu.js"></script>
+<script>
+    fetch('/data/clients.json')
+        .then(res => res.json())
+        .then(data => {
+            const container = document.getElementById('clientsContainer');
+            container.innerHTML = data.clients.map(c => `
+                <div class="client-card">
+                    <a href="${c.website || '#'}" target="${c.website ? '_blank' : ''}" style="display:block; text-align:center;">
+                        <img src="${c.logo}" alt="${c.name}" loading="lazy">
+                        <div class="client-name">${c.name}</div>
+                    </a>
+                </div>
+            `).join('');
+        })
+        .catch(err => {
+            console.error(err);
+            document.getElementById('clientsContainer').innerHTML = '<p>Ошибка загрузки списка клиентов.</p>';
+        });
+</script>
+</body>
+</html>
